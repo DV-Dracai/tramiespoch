@@ -1,0 +1,6 @@
+Sesión guardada en login.php:
+Array
+(
+    [user_id] => 4569
+    [user_name] => Doris Shunta
+)

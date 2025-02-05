@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud de Tercera Matrícula</title>
+    <style>
+        body {
+            font-family: "Times New Roman", serif;
+            font-size: 12pt;
+            text-align: justify;
+            margin: 40px;
+        }
+        
+        .title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 14pt;
+        }
+        
+        .date {
+            text-align: left;
+            /* 🔹 Alineado a la izquierda */
+            margin-bottom: 20px;
+        }
+        
+        .bold {
+            font-weight: bold;
+        }
+        
+        .signature {
+            margin-top: 50px;
+            text-align: left;
+            /* 🔹 Firma alineada a la izquierda */
+        }
+        
+        .line {
+            display: block;
+            width: 40%;
+            border-top: 1px solid black;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 class="title">SOLICITUD DE TERCERA MATRÍCULA</h1>
+    <br>
+    <p class="date">Riobamba, {fecha_tramite}</p>
+    <!-- 🔹 FECHA ALINEADA A LA IZQUIERDA -->
+
+    <p><strong>Doctor</strong></p>
+    <p><strong>{destinatario_nombre}, <br> {destinatario_cargo}</strong></p>
+    <p>Presente</p>
+    <br>
+
+    <p>De mis consideraciones:</p>
+    <p>
+        Con un atento saludo; Yo, <strong>{nombre_estudiante}</strong>, estudiante del <strong>{semestre}</strong>, de la carrera de <strong>{carrera}</strong>, solicito se me autorice Tercera Matrícula en la(s) materia(s)
+        <strong>{materias}</strong>, correspondiente al periodo académico <strong>{periodo_academico}</strong>.
+    </p>
+    <p>
+        Con estos antecedentes, parado en lo que dispone el reglamento del régimen académico de grado y la resolución <strong>{resolucion}</strong> en sus artículos <strong>{articulos}</strong>, me comprometo a entregar toda la documentación que respalde
+        mi petición, la cual podrá ser analizada y verificada por las instancias respectivas, ya que es fidedigna. En el caso de no cumplir con la entrega de todos los requisitos establecidos por el Decanato, acepto que mi pedido no sea aceptado y no
+        presentaré reclamo alguno por incumplir los requerimientos respectivos.
+    </p>
+
+    <br>
+    <p>Por la atención brindada quedo con usted muy agradecido.</p>
+    <br>
+    <p>Atentamente,</p>
+    <br>
+    <br>
+
+    <!-- 🔹 FIRMA ALINEADA A LA IZQUIERDA -->
+    <div class="signature">
+        <span class="line"></span>
+        <p><strong>{nombre_estudiante}</strong></p>
+        <p>C.I. <strong>{cedula_estudiante}</strong></p>
+        <p><strong>{carrera}</strong></p>
+    </div>
+</body>
+
+</html>

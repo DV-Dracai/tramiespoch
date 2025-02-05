@@ -1,0 +1,5 @@
+Sesión en check_session.php:
+Array
+(
+    [test] => Sesión funcionando correctamente
+)

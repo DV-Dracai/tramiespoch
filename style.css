@@ -1,0 +1,574 @@
+#loading-message {
+    text-align: center;
+    font-size: 14px;
+    color: gray;
+    margin-top: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.chat-message.bot {
+    text-align: left;
+    background-color: #e3f2fd;
+    /* Azul claro */
+    color: #0c5460;
+    /* Texto oscuro */
+    float: left;
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 80%;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.chat-message.bot strong {
+    color: #0078D7;
+    /* Azul más oscuro para destacar títulos */
+    font-weight: bold;
+}
+
+.chat-message.bot ul {
+    padding-left: 20px;
+}
+
+.chat-message.bot li {
+    list-style-type: square;
+    margin-bottom: 5px;
+}
+
+
+/* Estilos generales */
+
+body {
+    background: linear-gradient(to bottom, #f0f4f8, #d9e2ec);
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+}
+
+
+/* Barra lateral */
+
+#sidebar {
+    width: 300px;
+    background-color: #222;
+    color: white;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    /* Opcional, mejora en navegadores modernos */
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#sidebar h2 {
+    margin: 10px 0;
+    text-align: center;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    margin: 15px auto;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.chat-item {
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #333;
+    transition: background-color 0.3s;
+    text-align: center;
+    color: white;
+}
+
+.chat-item:hover {
+    background-color: #444;
+}
+
+.chat-item.active {
+    background-color: #555;
+}
+
+.new-chat {
+    margin-top: auto;
+    padding: 10px;
+    text-align: center;
+    background-color: #0078D7;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    width: 100%;
+}
+
+.new-chat:hover {
+    background-color: #005bb5;
+}
+
+
+/* Contenedor del chat */
+
+#main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #f1f1f1;
+    padding: 10px;
+}
+
+#chat-header {
+    background-color: #0078D7;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+#chat-header h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+#chat-subtitle {
+    font-size: 0.9em;
+    margin-top: 5px;
+    color: #ffffff;
+}
+
+#chat-display {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+}
+
+.chat-message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 60%;
+    display: block;
+    clear: both;
+}
+
+.chat-message.user {
+    text-align: right;
+    background-color: #e7f9e9;
+    color: #005f0f;
+    float: right;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.chat-message.bot {
+    text-align: left;
+    background-color: #d1ecf1;
+    /* Azul más suave */
+    color: #333;
+    /* Color neutro */
+    padding: 12px;
+    border-radius: 8px;
+    max-width: 75%;
+    font-size: 14px;
+    line-height: 1.5;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+#chat-input-container {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 5px;
+    margin-top: 10px;
+    align-items: center;
+}
+
+#chat-input {
+    flex-grow: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    width: 100%;
+}
+
+#send-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    padding: 10px 20px;
+    height: 50px;
+    background-color: #0078D7;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+#send-btn:hover {
+    background-color: #005bb5;
+}
+
+
+/* Modal de datos */
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.95);
+    width: 100%;
+    max-width: 400px;
+    background: rgb(7, 7, 7);
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    /*box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);*/
+    justify-content: center;
+    align-items: center;
+    display: none;
+    z-index: 1000;
+    display: none;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.modal-content {
+    width: auto;
+    background: rgb(255, 255, 255);
+    background-color: #fffefe;
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1001;
+    /* 🔹 Más alto que el fondo oscuro */
+    text-align: center;
+    pointer-events: auto;
+}
+
+.modal.show {
+    display: block;
+}
+
+.modal-content h3 {
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.modal-content input {
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+.modal-content button {
+    width: 300px;
+    padding: 12px;
+    background-color: #0078D7;
+    color: white;
+    border: auto;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal-content button:hover {
+    background-color: #005bb5;
+}
+
+
+/* Barra de progreso */
+
+#progress-container {
+    display: none;
+    text-align: center;
+    margin: 20px auto;
+}
+
+#progress-container.hidden {
+    display: none;
+}
+
+#progress-bar {
+    width: 80%;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+#progress-bar-fill {
+    width: 0;
+    height: 100%;
+    background-color: #0078D7;
+    transition: width 0.5s;
+}
+
+#progress-text {
+    font-size: 0.9em;
+    color: #555;
+}
+
+
+/* Confirmación de trámite */
+
+#confirmation-container {
+    display: none;
+    text-align: center;
+    margin: 20px auto;
+}
+
+#confirmation-container.hidden {
+    display: none;
+}
+
+#download-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#download-btn:hover {
+    background-color: #1e7e34;
+}
+
+
+/* Botón de opciones (⋮) */
+
+.chat-options-container {
+    position: relative;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.chat-options-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+
+/* Menú desplegable de opciones */
+
+.chat-options-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #222;
+    color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    min-width: 100px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.chat-options-menu.hidden {
+    display: none;
+}
+
+.chat-options-menu button {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: none;
+    background-color: #555;
+    color: rgb(255, 255, 255);
+    /* 🔹 Texto blanco */
+    font-size: 12px;
+    padding: 10px 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-right: 8px;
+    /* 🔹 Transición suave */
+}
+
+.chat-options-menu button:hover {
+    background: #202020;
+    /* 🔹 Cambia a un gris más claro */
+}
+
+#login-btn {
+    width: 90%;
+    padding: 12px;
+    background: #0078D7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#login-modal {
+    display: flex;
+    position: absolute;
+    width: auto;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    /* Asegurar que el modal esté por encima del menú */
+}
+
+#modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    /* Oscurecer fondo */
+    z-index: 1000;
+    /* Debe estar por debajo del modal */
+    display: none;
+    /* Se ocultará por defecto */
+}
+
+#modal-overlay.show {
+    display: block;
+}
+
+#logout-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 5px;
+    border-radius: auto;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#logout-btn:hover {
+    background: rgb(15, 15, 15);
+}
+
+
+/* 🔹 Contenedor del menú */
+
+#user-menu {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+/* 🔹 Imagen redonda del usuario */
+
+#profile-btn {
+    width: 70px;
+    /* Agranda el icono */
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 6px -5px;
+    border-radius: 50%;
+}
+
+
+/* 🔹 Cambia de color al pasar el mouse */
+
+#profile-btn:hover {
+    color: #0078D7;
+}
+
+
+/* 🔹 Estilo del menú desplegable */
+
+#menu-dropdown {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    display: none;
+    width: 200px;
+    z-index: 100;
+}
+
+
+/* 🔹 Estilo de los elementos dentro del menú */
+
+#menu-dropdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#menu-dropdown li {
+    padding: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    background-color: #222;
+}
+
+#menu-dropdown li:hover {
+    background: #0078D7;
+    color: white;
+}
+
+
+/* 🔹 Botón de cierre */
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+
+/* 🔹 Estilos del botón de editar */
+
+#edit-profile-btn {
+    background: #0078D7;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+#edit-profile-btn:hover {
+    background: #005bb5;
+}

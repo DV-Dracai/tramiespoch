@@ -1,0 +1,16 @@
+Array
+(
+    [nombre_estudiante] => Rene Lizano
+    [cedula_estudiante] => 1803826666
+    [carrera] => Ingeniería en Software
+    [periodo_academico] => 4
+    [semestre] => 4
+    [materias] => BD
+    [fecha_tramite] => 5 de febrero de 2025
+    [resolucion] => 535.CP.2020
+    [articulos] => 44, 49 y 50
+    [destinatario_nombre] => Washington Luna
+    [destinatario_cargo] => Decano de la Facultad de Informática y Electrónica
+    [descripcion] => Solicitud de tercera matrícula para las materias: BD. Periodo académico: 4.
+    [tipo_tramite] => Tercera Matricula
+)
